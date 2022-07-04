@@ -1,5 +1,6 @@
 const initialState ={
   videogames: [],
+  videogame: [],
   genres: []
 }
 
@@ -9,6 +10,18 @@ function reducer(state=initialState,action){
         return {
           ...state,
           videogames: action.payload
+        };
+
+    case "GET_VIDEOGAME":
+        return {
+          ...state,
+          videogame: action.payload
+        };
+
+      case "GET_GENRES":
+        return {
+          ...state,
+          genres: action.payload
         }
         default: return state
   }
