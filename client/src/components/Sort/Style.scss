@@ -1,0 +1,45 @@
+.select {
+  display: grid;
+  grid-template-areas: "select";
+  align-items: center;
+  position: relative;
+
+  select,
+  &::after {
+    grid-area: select;
+  }
+  width: 170px;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1.25rem;
+  cursor: pointer;
+  line-height: 1.1;
+}
+
+.sort{
+  position: absolute;
+  top:8px;
+  left: 29%;
+  transform: translate(-50%, -50%);
+}
+
+select {
+  
+  appearance: none;
+  background-color: transparent;
+  padding: 5px;
+  margin: 0;
+  width: 100%;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+  z-index: 1;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid #00B4CC;
+  background: #1f1a24;
+  text-align: center;
+  color: #fff;
+}

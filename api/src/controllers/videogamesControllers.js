@@ -29,6 +29,7 @@ async function getVideogames (req,res,next){
                 name: g.name,
             };
             }),
+          rating:elem.rating
 
         }
       })
@@ -59,6 +60,8 @@ async function getVideogames (req,res,next){
                 name: g.name,
             };
             }),
+
+          rating: elem.rating
 
         }
       })
@@ -95,6 +98,8 @@ async function getVideogames (req,res,next){
           };
           }),
 
+        rating: elem.rating
+
       }
     })
 
@@ -116,6 +121,8 @@ async function getVideogames (req,res,next){
               name: g.name,
           };
           }),
+
+        rating: elem.rating
 
       }
     })

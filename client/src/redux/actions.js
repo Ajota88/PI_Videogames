@@ -9,22 +9,35 @@ export function getAllVideogames(){
   }
 }
 
+export function getVideogamesByName (name){
+  return (dispatch)=>{
+    return axios(`http://localhost:3001/videogames?name=${name}`)
+    .then(res=>dispatch({
+                          type:"GET_BY_NAME",
+                          payload: res.data
+                        }))
+    .catch(err => {
+              dispatch({
+                type: "SEARCH_ERROR",
+              })
+            });
+}
+}
+
 export function getVideogame (id){
   return (dispatch)=>{
     return axios(`http://localhost:3001/videogame/${id}`)
     .then(res=>dispatch({type:"GET_VIDEOGAME",
                            payload: res.data
                           }))
+    .catch(err => {
+      dispatch({
+        type: "ID_ERROR",
+      })
+    });
   }
 }
 
-
-export function createVideogame(videogame){
-  return {
-    type: "CREATE_VIDEOGAME",
-    payload: videogame
-  }
-}
 
 export function getGenres(){
 
@@ -35,4 +48,56 @@ export function getGenres(){
                         }))
 }
   
+}
+
+export function sortByAlphabet(payload){
+  return {
+
+    type: "SORT_BY_ALPHABET",
+    payload
+
+  }
+ 
+}
+
+export function sortByRating(payload){
+  return {
+
+    type: "SORT_BY_RATING",
+    payload
+
+  }
+ 
+}
+
+export function clearDetail(){
+  return{
+    type: "CLEAR_DETAIL"
+    
+  }
+}
+
+export function filterByGenre(genre){
+  return{
+    type: "FILTER_BY_GENRE",
+    payload:genre
+  }
+}
+
+export function resetFilter(){
+  return{
+    type : "RESET_FILTER"
+  }
+}
+
+export function reloadDB(){
+  return{
+    type : "RELOAD_DB"
+  }
+}
+
+export function showAdded(){
+  return{
+    type: "SHOW_ADDED"
+  }
 }

@@ -1,0 +1,106 @@
+
+ h1{
+  color:rgba(234, 240, 246, 0.8);
+  font-weight: 700;
+}
+
+.form-container{
+
+  color:white;
+ 
+  label{
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    margin: 0 0 2vh 0;
+  }
+
+  p{
+    font-size: 15px;
+    color:rgb(153, 3, 3)
+  }
+
+  [type="text"], textarea{
+    display: block;
+    width: 700px;
+    padding: .5rem .8rem .5rem .8rem;
+    margin: 0 auto ;
+    border:0;
+    border-radius: 5px;
+    font-size: 20px;
+
+    
+
+  }
+.platforms-form{
+  width: 800px;
+  margin:0 auto
+  }
+
+.genres-form{
+  width: 1000px;
+  
+  margin: 0 auto;
+  
+ }
+
+ ul{
+  display: flex;
+  flex-wrap: wrap;
+  };
+  li{
+  display:inline-block;
+  flex-wrap: wrap;
+  padding: 12px;
+  }
+}
+
+[type="checkbox"]
+{
+    vertical-align:middle;
+}
+
+label{
+  display: inline-block;
+  word-wrap:break-word
+}
+
+textarea{
+  height: 15vh;
+}
+
+.create-btn{
+  font-size:15px;
+  width:140px;
+  height:50px;
+  border-width:1px;
+  color:#fff;
+  border-color:#18ab29;
+  font-weight:bold;
+  border-radius: 5px;
+  text-shadow: 1px 1px 0px #2f6627;
+  background:#1f1a24;
+  margin-top: 10px;
+  cursor: pointer;
+}
+
+.home-btn{
+  font-size:15px;
+  
+  width:140px;
+  height:50px;
+  border-width:1px;
+  color:#fff;
+  border-color:#18ab29;
+  font-weight:bold;
+  border-radius: 5px;
+  text-shadow: 1px 1px 0px #2f6627;
+  background:#1f1a24;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+
+.form-submited{
+  color:rgba(234, 240, 246, 0.8)
+}

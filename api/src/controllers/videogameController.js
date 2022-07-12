@@ -13,11 +13,11 @@ async function getVideogameById (req,res,next){
   let {id: idQuery} = req.params
 
   console.log(req.params.id)
-  
+  let videogameById=null
 
   try {
-
-    let videogameById = await Videogame.findOne({
+    
+     videogameById = await Videogame.findOne({
       where: {
         id: idQuery,
       },
@@ -45,6 +45,7 @@ async function getVideogameById (req,res,next){
       return res.send(vidDataFront)
 
     }
+  
 
     if(videogameById === null){
      videogameById = (await axios(`https://api.rawg.io/api/games/${idQuery}?&key=${API_KEY}`)).data
@@ -53,20 +54,19 @@ async function getVideogameById (req,res,next){
       id : videogameById.id,
       name: videogameById.name,
       image: videogameById.background_image ? videogameById.background_image : null,
-      description: videogameById.description,
+      description: videogameById.description_raw,
       releaseDate: videogameById.released,
       rating: videogameById.rating,
       platforms: videogameById.platforms.map(elem=>elem.platform.name),
       genres: videogameById.genres.map(gen=>gen.name)
     }
-
+    
     return res.send(vidDataFront)
-  }else throw new Error("No se encontro el videojuego")
+  }
 
   } catch (error) {
     
-    return res.status(404).send("No se encontro el videojuego")
-
+    res.status(404).send(error)
   }
   
 }
