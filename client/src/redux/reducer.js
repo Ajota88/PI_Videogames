@@ -7,7 +7,8 @@ const initialState ={
   dataFilter:[],
   filterSelected:false,
   searchFailed:false,
-  idError:false
+  idError:false,
+  loadingPage:true
   
 }
 
@@ -77,21 +78,33 @@ function reducer(state=initialState,action){
         return {
           ...state,
           videogames: sortedRatingArr
-        }
+        };
 
       case "FILTER_BY_GENRE":
-        let filterVideogame = [...state.videogames]
-        console.log(action.payload)
-        filterVideogame = filterVideogame.filter(v=>{
-          let videogameGenre = v.genres.map(g=>g.name)
-          return videogameGenre.includes(action.payload)
-        })
-        console.log(filterVideogame)
-        return{
-          ...state,
-          dataFilter:filterVideogame,
-          filterSelected: true
-        }
+        if(action.payload.genre || action.payload.origin){
+          let filterVideogame = [...state.videogames]
+          //console.log(action.payload)
+          if(action.payload.genre){
+            filterVideogame = filterVideogame.filter(v=>{
+              let videogameGenre = v.genres.map(g=>g.name)
+              return videogameGenre.includes(action.payload.genre)
+            })
+          }
+          if(action.payload.origin){
+            filterVideogame = filterVideogame.filter(v=>{
+              if(action.payload.origin === "api"){
+                return v.id < 1000000
+              }else return v.id >= 1000000
+            })
+          }
+          //console.log(filterVideogame)
+          return{
+            ...state,
+            dataFilter:filterVideogame,
+            filterSelected: true
+          }
+      };
+     
 
       case "RESET_FILTER"  :
         return{
@@ -102,11 +115,10 @@ function reducer(state=initialState,action){
       case "SHOW_ADDED":
         let videogamesAdded = [...state.videogames]
         videogamesAdded = videogamesAdded.filter(v=>v.id>=1000000)
-        console.log(videogamesAdded)
+        //console.log(videogamesAdded)
         return{
           ...state,
-          filterSelected : true,
-          dataFilter: videogamesAdded
+          videogames: videogamesAdded
         }
 
       case "CLEAR_DETAIL":

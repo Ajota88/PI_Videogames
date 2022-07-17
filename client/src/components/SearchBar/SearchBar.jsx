@@ -1,6 +1,7 @@
 import React from 'react'
 import { getVideogamesByName } from '../../redux/actions'
 import {useDispatch, useSelector} from "react-redux"
+import { Link } from 'react-router-dom'
 import "./style.scss"
 
 const SearchBar = () => {
@@ -25,7 +26,7 @@ const SearchBar = () => {
     <div className='wrap'>
      { !searchFailed && <div className='search'>
       <input type="text" onChange={handleChange} value={input} className="serach-videogame" />
-      <button onClick={handleSearch} className="search-btn">Search</button>
+      <Link to="/HOME"> <button onClick={handleSearch} className="search-btn">Search</button></Link>
       </div>}
     </div>
 

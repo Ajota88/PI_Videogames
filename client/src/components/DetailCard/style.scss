@@ -12,11 +12,24 @@ ul {
   width: 95vw;
   max-width: 1170px;
   margin: 4rem auto;
+  background-size:cover;
+  background-repeat: no-repeat;
+  border-radius: 5px;
+  padding: 20px;
   display: grid;
   gap: 2rem;
   grid-template-columns: 2fr 2fr;
   h1,h2,h3,h4,p,li{
-    color: rgba(234, 240, 246, 0.8)
+    text-shadow: 2px 0 #000, -2px 0 #000, 0 2px #000, 0 -2px #000,
+    1px 1px #000, -1px -1px #000, 1px -1px #000, -1px 1px #000;
+    color: rgba(234, 240, 246, 0.8);
+  }
+
+  h4,li{
+    text-shadow: 2px 0 #fff, -2px 0 #fff, 0 2px #fff, 0 -2px #fff,
+    1px 1px #fff, -1px -1px #fff, 1px -1px #fff, -1px 1px #fff;
+    color: #1f1a24;
+    font-weight: 800;
   }
  
   h1{
@@ -24,9 +37,13 @@ ul {
     font-size: 50px;
     font-weight: 800;
   }
+
+  h2{
+    font-size: 30px
+  }
   li{
     font-size: 14px;
-    font-weight: 500;
+    
     padding: 5px;
   }
   p{
@@ -34,6 +51,9 @@ ul {
    
   }
 }
+
+
+
 
 .single-videogame img {
   width: 100%;
@@ -63,10 +83,10 @@ ul {
 
 .date-rating{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   position: absolute;
   top: 26%;
-  left: 70%;
+  left: 27%;
   transform: translate(-50%, -50%);
   width: 500px;
 }

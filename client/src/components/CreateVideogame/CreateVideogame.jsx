@@ -2,10 +2,11 @@ import React from 'react'
 import axios from 'axios'
 import {useEffect} from "react"
 import {useDispatch, useSelector} from "react-redux"
-import { getGenres } from '../../redux/actions'
+import { getGenres,getAllVideogames} from '../../redux/actions'
 import { useForm } from '../../hooks/useForm'
 import "./style.scss"
 import { Link } from 'react-router-dom'
+import SearchBar from '../SearchBar/SearchBar';
 
 
 const CreateVideogame = () => {
@@ -14,6 +15,7 @@ const CreateVideogame = () => {
   const dispatch = useDispatch()
   const genres = useSelector(state=>state.genres)
   let [formSubmited,setFormSubmited] = React.useState(false)
+  let [formError,setFormError] = React.useState(true)
  //console.log(genres)
 
   useEffect(()=>{
@@ -31,46 +33,58 @@ const CreateVideogame = () => {
     releaseDate:""
  }
 
+ /*/////////Validacion Formulario////////////////////////////////// */
+
  const validationsForm = (form) => {
-  let errors = {}
-  let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]+$/;
-  
-  let regexComments = /^.{1,255}$/;
+    let errors = {}
+    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]{3,20}$/;
 
-  if(!form.name.trim()){
-    errors.name = "El campo 'name' es requerido"
-  }else if(!regexName.test(form.name.trim())){
-    errors.name = "El campo 'nombre' solo acepta letras"
+    let regexComments = /^.{15,300}$/;
+
+    if(!form.name.trim()){
+      errors.name = "'Name' is required"
+    }else if(!regexName.test(form.name.trim())){
+      errors.name = "'Name' must contain only letters and a minimun of 3 and a maximun of 20 characters"
+    }
+
+    if(!form.description.trim()){
+      errors.description = "'Description' is required"
+    }else if(!regexComments.test(form.description.trim())){
+      errors.description = "'Description' must be a minimum of 15 and maximun of 255 characters"
+    }
+
+    if(form.rating>5 || form.rating<0){
+      errors.rating = "Input must be between 0.0 and 5.0"
+    }
+
+    let currentDate = Date.now()
+    let limitDate = new Date(1958, 10, 1)
+    let limitDateMil = limitDate.getTime()
+    let dateInput = new Date(form.releaseDate)
+    let dateInputMil = dateInput.getTime()
+    
+    if(form.releaseDate===""){
+      errors.releaseDate= "Date is required"
+    }else if(form.releaseDate){
+      if(dateInputMil>currentDate){
+        errors.releaseDate = "Invalid Date, Date cannot be greater than current Date"
+      }else if(dateInputMil<limitDateMil){
+        errors.releaseDate= "Invalid Date, Date cannot be earlier than 1958"
+      }
+    }
+    return errors
   }
-
-  if(!form.description.trim()){
-    errors.description = "El campo 'description' es requerido"
-  }else if(!regexComments.test(form.description.trim())){
-    errors.description = "El campo 'comments' no puede ser mayor a 250 caracteres "
-  }
-
-  if(form.rating>5 || form.rating<0){
-    errors.rating = "El rating debe de estar entre 0 y 5"
-  }
-
-  if(form.releaseDate===""){
-    errors.releaseDate= "fecha nulla"
-  }else {
-    let fecha = new Date(form.releaseDate)
-    console.log(fecha.getTime())
-    if(fecha.getTime()<birthday.getTime()) errors.releaseDate="la fecha no puede ser anterior a "
-  }
-
-  return errors
-}
+  /*//////////////////////////////////////////////////////////////////////// */
 
 const {form,
   errors,
   handleChange,
   handleBlur,
-  fecha} = useForm(initialForm,validationsForm)
+  } = useForm(initialForm,validationsForm)
 
+  
 
+////////////*Control checkboxes///////////// */
   const [platformsChecked, setPlatformsChecked] = React.useState(new Array(platformsList.length).fill(false))
 
   const [genresChecked, setGenresChecked] = React.useState(new Array(19).fill(false))
@@ -79,18 +93,19 @@ const {form,
 
     setPlatformsChecked(prev=>prev.map((item, index) =>
     index === position ? !item : item 
-  ))
+    ))
   }
  
-
   function handleGenreChange(position){
 
     setGenresChecked(prev=>prev.map((item, index) =>
     index === position ? !item : item 
-  ))
+    ))
 
   }
+/*///////////////////////////////////////////////////////////*/ 
 
+  
   
   //Eviando la informacion del formulario
   function handleSubmit(e){
@@ -109,51 +124,58 @@ const {form,
     }
 
     let onePlatChecked = platformsChecked.some(el=>el===true)
-
+    let oneGenreChecked = genresChecked.some(el=>el===true)
+   
     e.preventDefault()
 
-    if(Object.keys(errors).length && onePlatChecked === false) return
+    if(Object.keys(errors).length>0 || onePlatChecked === false || oneGenreChecked===false) return
 
     axios.post("http://localhost:3001/videogames",{
       name:form.name,
       description: form.description,
-      rating: form.rating,
+      rating: Number(form.rating).toFixed(2),
       platforms: platforms,
       genres:genresForm,
       release_date:form.releaseDate
     })
     .then(res=>setFormSubmited(true))
+    .catch(e=>console.log(e))
   }
-
+/********************************************************************************* */
   return (
     <div>
       <h1>Add Videogame</h1>
+      <div className='search-bar'><SearchBar className="searchbar" /></div>
+    
      {!formSubmited && <form onSubmit={(e)=>handleSubmit(e)} className="form-container">
-        <div>
-          <label>Name: </label>
+        <div className='name-container'>
+          <label>(*)Name: </label>
           <input type="text" name={"name"}   onBlur={handleBlur}
-        value={form.name} onChange={handleChange} />
-        </div>
+        value={form.name} onChange={handleChange} className="name-input" />
         {errors && <p>{errors.name}</p>}
-        <div>
-          <label>Rating: </label>
-          <input type="number" name={"rating"} value={form.rating} onChange={handleChange} onBlur={handleBlur} />
         </div>
-        {errors && <p>{errors.rating}</p>}
-        <div>
-          <label>Release Date: </label>
-          <input type="date" name={"releaseDate"} value={form.releaseDate} onChange={handleChange} />
+      
+        <div className='rating-container'>
+          <label>(*)Rating: </label>
+          <input type="number" name={"rating"} value={form.rating} onChange={handleChange} onBlur={handleBlur} className="rating-input" />
+          {errors && <p>{errors.rating}</p>}
         </div>
-        {errors && <p>{errors.releaseDate}</p>}
-        <div>
-          <label>Description: </label>
-          <textarea placeholder='Description' type="text" name={"description"}   onBlur={handleBlur}
-        value={form.description} onChange={handleChange} />
+      
+        <div className='date-container'>
+          <label>(*)Release Date: </label>
+          <input type="date" name={"releaseDate"} value={form.releaseDate} onChange={handleChange} onBlur={handleBlur} className="input-date"/>
+          {errors && <p>{errors.releaseDate}</p>}
         </div>
-        {errors && <p>{errors.description}</p>}
-        <div>
+        <div className='description-container'>
+          <label>(*)Description: </label>
+          <textarea placeholder='Description...' type="text" name={"description"}   onBlur={handleBlur}
+        value={form.description} onChange={handleChange} className="description-input" />
+          {errors && <p>{errors.description}</p>}
+        </div>
+      
+        <div className='paltforms-container'>
         <fieldset className='platforms-form'>
-          <legend>Platforms</legend>                    { /* Platforms checkboxes */}
+          <legend>(*)Platforms</legend>                    { /* Platforms checkboxes */}
           <ul>
           {platformsList.map((p,index)=>{
               return(
@@ -171,12 +193,12 @@ const {form,
               )
           })}
           </ul>
-        
         </fieldset>
         </div>
-        <div>
+       
+        <div className='genres-container'>
         <fieldset className='genres-form'>                        
-          <legend>Genres</legend>                 { /* Genres checkboxes */}
+          <legend>(*)Genres</legend>                 { /* Genres checkboxes */}
           <ul>
           {genres.map((g,index)=>{
               return(
@@ -197,13 +219,13 @@ const {form,
         </fieldset>
 
         </div>
-        <button type="submit" className='create-btn' disabled={!Boolean(form.name)}>Add Videogame</button>
+        <button type="submit" className='create-btn' disabled={!Boolean(form.name) || !Boolean(form.description) }>Add Videogame</button>
         <br />
-       
+          <p className='requirements'>(*): Fields required</p>
       </form>}
       {formSubmited && <h2 className='form-submited'>Form Submited!</h2>}
       <Link to="/HOME">
-         <button  className='home-btn'>BACK HOME</button>
+         <button  className='home-btn'>HOME</button>
       </Link>
     </div>
   )

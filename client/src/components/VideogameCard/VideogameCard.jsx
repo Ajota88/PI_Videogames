@@ -12,6 +12,7 @@ const VideogameCard = (props) => {
            <img src={props.image?props.image:defaultImage} />
             <div className='videogame-info'>
               <h2>{props.name}</h2>
+              <p className='card-rating'>{props.rating}</p>
               <div className='videogame_genres'>
               {props.genres && props.genres.map(genre=>{
                 //console.log(genre)

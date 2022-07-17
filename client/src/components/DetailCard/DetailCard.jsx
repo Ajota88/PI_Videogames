@@ -7,10 +7,11 @@ import defaultImage from "../../recursos/imagenes/default_poster.jpg"
 import Spinner from '../Spinner/Spinner';
 import NotFound from '../NotFound/NotFound';
 
+
 const DetailCard = (props) => {
 
   const videogame = useSelector((state) => state.videogame);
-  console.log(videogame)
+  //console.log(videogame)
 
   let id = props.match.params.videogameId;
 
@@ -40,11 +41,12 @@ const DetailCard = (props) => {
 
   
   let genres= videogame.id>=1000000?videogame.genres.map(g=>g.name):videogame.genres
+
   return (
     <div>
-
-    {loading?<Spinner /> :<section className='single-videogame'>
-      {videogame && <img src={videogame.image?videogame.image:defaultImage} alt={videogame.name} />}
+     
+    {loading?<Spinner /> :<section className='single-videogame' style={{backgroundImage: `linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),url('${videogame.image?videogame.image:defaultImage}')`}}>
+     
       <div className='single-videogame-info'>
         <h1>{videogame.name}</h1>
         <div className='date-rating'>
@@ -75,7 +77,7 @@ const DetailCard = (props) => {
           </ul>
         </div>
         <Link to={"/HOME"} >
-         <button className="btn-back">BACK</button>
+         <button className="btn-back">BACK HOME</button>
         </Link>
       </div>
     </section>}

@@ -13,33 +13,19 @@ export const useForm = (initialForm,validateForm)=>{
       [name]: value
     })
   }
-  let fecha = new Date(form.releaseDate)
- 
-  
 
   const handleBlur = (e)=>{
     handleChange(e)
     setErrors(validateForm(form))
   }
 
-  const handleSubmit = (e)=>{
-    e.preventDefault()
-    setErrors(validateForm(form))
-    if(Object.keys(errors).length===0){
-
-      alert("Enviando Formulario")
-      
-
-    }else return
-  }
 
   return {
     form,
     errors,
     handleChange,
     handleBlur,
-    handleSubmit,
-    fecha
+   
   }
 
 }

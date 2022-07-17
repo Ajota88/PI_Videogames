@@ -6,6 +6,22 @@
   }
 }
 
+
+.header-container{
+  z-index: 2;
+  width:81%;
+  height: 150px;
+  margin: 0 auto ;
+  position:sticky;
+  top:0;
+  border-radius: 10px;
+  background: rgb(31,26,36);
+  background: linear-gradient(90deg, rgba(31,26,36,1) 0%, rgba(2,0,36,1) 50%, rgba(5,78,93,1) 100%);
+  
+}
+
+
+
 .videogame_list {
   width: 80vw;
   max-width:1170px;
@@ -68,8 +84,8 @@
   cursor: pointer;
   font-size: 20px;
   position: absolute;
-  top: 22%;
-  left: 40%;
+  top: 76%;
+  left: 50%;
   transform: translate(-50%, -50%);
 }
 
@@ -84,8 +100,8 @@
   cursor: pointer;
   font-size: 20px;
   position: absolute;
-  top: 22%;
-  left: 51%;
+  top: 76%;
+  left: 49%;
   transform: translate(-50%, -50%);
 }
 
@@ -104,11 +120,41 @@
   cursor: pointer;
   font-size: 20px;
   position: absolute;
-  top: 22%;
-  left: 87%;
+  top: 76%;
+  left: 62%;
   transform: translate(-50%, -50%);
 }
 
 .no-added-found{
   color:white;
+}
+
+.banner{
+  background-image: url("../../recursos/imagenes/26145.jpg");
+  height: 200px;
+  width: 80%;
+  margin:0 auto;
+  margin-top: 20px;
+  background-size:100% 100%;
+  background-repeat: no-repeat;
+  border-radius: 10px;
+  animation: slide 20s infinite
+}
+
+@keyframes slide {
+  0%{
+    background-image:url("../../recursos/imagenes/26145.jpg") ;
+  }
+
+  25%{
+    background-image:url("../../recursos/imagenes/mario_image.jpg") ;
+  }
+
+  50%{
+    background-image:url("../../recursos/imagenes/gaming_image.jpg") ;
+  }
+
+  75%{
+    background-image:url("../../recursos/imagenes/casettes.jpg") ;
+  }
 }

@@ -6,6 +6,10 @@ export function getAllVideogames(){
       .then(res=>dispatch({type:"GET_VIDEOGAMES",
                             payload: res.data  
                           }))
+                          .catch(err => {
+                           return alert(
+                            "Error trying to acces Data Base,please check your internet connection or try later.")
+                          });
   }
 }
 
@@ -101,3 +105,4 @@ export function showAdded(){
     type: "SHOW_ADDED"
   }
 }
+

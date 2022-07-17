@@ -7,7 +7,7 @@ const LandingPage = () => {
     <div className='landing_page'>
       <img src={landingImage} />
       <Link to={"/HOME"}>
-        <h2>Continuar</h2>
+        <h2>WELCOME</h2>
       </Link>
      
     </div>

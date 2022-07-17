@@ -1,8 +1,15 @@
 .filter_genre{
   position: absolute;
-  top: -35px;
-  left: 16%;
+  top: -27px;
+  left: 8%;
   transform: translate(-50%, -50%);
+}
+
+.filter_origin{
+  position: absolute;
+  top: -92px;
+  left: 30%;
+ 
 }
 
 .select {
@@ -42,4 +49,20 @@ select {
   background: #1f1a24;
   text-align: center;
   color: #fff;
+}
+
+.show_all-btn{
+  width: 100px;
+  height: 36px;
+  border: 1px solid #00B4CC;
+  background: #1f1a24;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 20px;
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

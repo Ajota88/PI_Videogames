@@ -11,6 +11,7 @@ export const paginate = videogames=>{
 
 export function sortAsc(arr, field) {
   return arr.sort(function (a, b) {
+   
       if (a[field] > b[field]) {
           return 1;
       }
