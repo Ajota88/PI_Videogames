@@ -150,6 +150,7 @@ const {form,
       release_date:form.releaseDate
     })
     .then(res=>setFormSubmited(true))
+    .then(res=>dispatch(getAllVideogames()))
     .catch(e=>console.log(e))
   }
 /********************************************************************************* */

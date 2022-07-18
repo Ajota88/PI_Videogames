@@ -27,8 +27,9 @@ const Videogames = () => {
   //console.log(filterSelected)
 
   useEffect(()=>{
-    
-    dispatch(getAllVideogames())
+    if(!videogames.length){
+     dispatch(getAllVideogames())
+    }
     dispatch(getGenres())
     
     
