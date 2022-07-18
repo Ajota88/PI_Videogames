@@ -16,7 +16,13 @@ const Sort = () => {
     }else {
         dispatch(sortByAlphabet(direction));
     }
-}
+
+    window.scrollTo({
+      top: 100, 
+      behavior: 'smooth'
+    });
+
+  }
 
   return (
     <div className="select sort">

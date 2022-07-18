@@ -5,7 +5,7 @@ export const paginate = videogames=>{
     const start = index * itemsPerPage
     return videogames.slice(start,start+itemsPerPage)
   })
-  console.log(newVideogames)
+  //console.log(newVideogames)
   return newVideogames
 }
 

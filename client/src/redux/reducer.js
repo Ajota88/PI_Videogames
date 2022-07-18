@@ -81,29 +81,14 @@ function reducer(state=initialState,action){
         };
 
       case "FILTER_BY_GENRE":
-        if(action.payload.genre || action.payload.origin){
-          let filterVideogame = [...state.videogames]
-          //console.log(action.payload)
-          if(action.payload.genre){
-            filterVideogame = filterVideogame.filter(v=>{
-              let videogameGenre = v.genres.map(g=>g.name)
-              return videogameGenre.includes(action.payload.genre)
-            })
-          }
-          if(action.payload.origin){
-            filterVideogame = filterVideogame.filter(v=>{
-              if(action.payload.origin === "api"){
-                return v.id < 1000000
-              }else return v.id >= 1000000
-            })
-          }
+         
           //console.log(filterVideogame)
           return{
             ...state,
-            dataFilter:filterVideogame,
+            dataFilter:action.payload,
             filterSelected: true
           }
-      };
+      
      
 
       case "RESET_FILTER"  :

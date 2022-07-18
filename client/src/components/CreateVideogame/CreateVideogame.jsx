@@ -54,7 +54,11 @@ const CreateVideogame = () => {
     }
 
     if(form.rating>5 || form.rating<0){
-      errors.rating = "Input must be between 0.0 and 5.0"
+      errors.rating = "Input must be between 0.1 and 5.0"
+    }else if(!form.rating){
+      errors.rating = "'Rating' can't be empty or 0"
+    }else if(form.rating.toString().includes(".") && form.rating.toString().split(".")[1].length > 2){
+      errors.rating = "'Rating' can't contain more than 2 decimals"
     }
 
     let currentDate = Date.now()
@@ -82,7 +86,7 @@ const {form,
   handleBlur,
   } = useForm(initialForm,validationsForm)
 
-  
+  let disabled = Object.values(form).some(el=>!el)
 
 ////////////*Control checkboxes///////////// */
   const [platformsChecked, setPlatformsChecked] = React.useState(new Array(platformsList.length).fill(false))
@@ -219,7 +223,7 @@ const {form,
         </fieldset>
 
         </div>
-        <button type="submit" className='create-btn' disabled={!Boolean(form.name) || !Boolean(form.description) }>Add Videogame</button>
+        <button type="submit" className='create-btn' disabled={disabled }>Add Videogame</button>
         <br />
           <p className='requirements'>(*): Fields required</p>
       </form>}
