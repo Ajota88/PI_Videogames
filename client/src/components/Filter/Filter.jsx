@@ -97,7 +97,8 @@ const Filter = () => {
       </div>
       <div className='select filter_origin'>
         <select  onChange={(e)=>handleFilterOrigin(e)}>
-          <option value="" disabled selected>Select Origin</option>
+          <option value="" disabled selected>Filter by Source</option>
+          <option value="">All Sources</option>
           <option value='api'>From API</option>
           <option value='added'>Added</option>
         </select>

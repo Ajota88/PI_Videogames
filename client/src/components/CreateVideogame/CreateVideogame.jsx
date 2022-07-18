@@ -15,6 +15,8 @@ const CreateVideogame = () => {
   const dispatch = useDispatch()
   const genres = useSelector(state=>state.genres)
   let [formSubmited,setFormSubmited] = React.useState(false)
+  const [platformsChecked, setPlatformsChecked] = React.useState(new Array(platformsList.length).fill(false))
+  const [genresChecked, setGenresChecked] = React.useState(new Array(19).fill(false))
   let [formError,setFormError] = React.useState(true)
  //console.log(genres)
 
@@ -86,12 +88,17 @@ const {form,
   handleBlur,
   } = useForm(initialForm,validationsForm)
 
-  let disabled = Object.values(form).some(el=>!el)
+  //Habilitacion boton Add
+ 
+
+  
+    let disabled = Object.values(form).some(el=>!el)  
+    
+  
+  
 
 ////////////*Control checkboxes///////////// */
-  const [platformsChecked, setPlatformsChecked] = React.useState(new Array(platformsList.length).fill(false))
-
-  const [genresChecked, setGenresChecked] = React.useState(new Array(19).fill(false))
+ 
 
   function handlePlatChange(position){
 
