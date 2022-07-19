@@ -20,8 +20,29 @@
 .sort{
   position: absolute;
   top:11%;
-  left: 23%;
+  left: 22%;
   transform: translate(-50%, -50%);
+}
+
+.sort:after {
+  content: '<>';
+  font: 17px "Consolas", monospace;
+  color: white;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  right: 11px;
+  /*Adjust for position however you want*/
+  
+  top: 5px;
+  padding: 0 0 2px;
+  border-bottom: 1px solid #999;
+  /*left line */
+  
+  position: absolute;
+  pointer-events: none;
+  z-index: 2;
 }
 
 select {

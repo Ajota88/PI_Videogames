@@ -74,11 +74,16 @@ ul {
   border: 1px solid #00B4CC;
   background: #1f1a24;
   text-align: center;
-  color: rgba(234, 240, 246, 0.8);
+  color: goldenrod;
   border-radius: 5px;
   cursor: pointer;
   font-size: 20px;
   
+}
+
+.btn-back:hover{
+  background-color: #2b2433;
+  color:gold
 }
 
 .date-rating{

@@ -39,14 +39,14 @@ const CreateVideogame = () => {
 
  const validationsForm = (form) => {
     let errors = {}
-    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]{3,20}$/;
+    let regexName = /^[A-Za-zÑñÁáÉéÍíÓóÚúÜü\s]{3,20}[0-9]{0,4}$/;
 
     let regexComments = /^.{15,300}$/;
 
     if(!form.name.trim()){
       errors.name = "'Name' is required"
     }else if(!regexName.test(form.name.trim())){
-      errors.name = "'Name' must contain only letters and a minimun of 3 and a maximun of 20 characters"
+      errors.name = "'Name' must begin with a word or a phrase with a minimun of 3 and a maximun of 20 characters, and accepts a number of 4 digits at max"
     }
 
     if(!form.description.trim()){

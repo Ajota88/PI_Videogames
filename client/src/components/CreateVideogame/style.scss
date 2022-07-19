@@ -27,7 +27,7 @@ fieldset{
 
   p{
     font-size: 15px;
-    color:rgb(160, 3, 3)
+    color:rgb(197, 5, 5)
   }
 
   [type="text"], textarea{
@@ -184,6 +184,9 @@ fieldset{
   left: 63%;
 }
 
+.home-btn:hover{
+  color:white;
+}
 .form-submited{
   color:rgba(234, 240, 246, 0.8)
 }
