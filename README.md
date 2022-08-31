@@ -31,3 +31,4 @@ La idea general es crear una aplicación en la cual se puedan ver los distintos 
 -  Express
 - Sequelize - Postgres
 
+### [Live Site](https://electronic-games-db.vercel.app/)
