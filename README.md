@@ -15,7 +15,6 @@ La idea general es crear una aplicación en la cual se puedan ver los distintos 
 - Agregar nuevos videojuegos
 
 
- [HenryLogo](https://ibb.co/2kHhkZ5.png)
 
 
 ## Objetivos del Proyecto
