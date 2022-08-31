@@ -14,6 +14,10 @@ La idea general es crear una aplicación en la cual se puedan ver los distintos 
 - Filtrarlos / Ordenarlos
 - Agregar nuevos videojuegos
 
+<p align="right">
+  <img height="200" src="https://ibb.co/2kHhkZ5" />
+</p>
+
 ## Objetivos del Proyecto
 
 - Construir una App utlizando React, Redux, Node y Sequelize.
