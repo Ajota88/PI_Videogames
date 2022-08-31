@@ -32,3 +32,7 @@ La idea general es crear una aplicación en la cual se puedan ver los distintos 
 - Sequelize - Postgres
 
 ### [Live Site](https://electronic-games-db.vercel.app/)
+
+### Setup Local
+
+- Desde el editor vsCode ejecuta el comando ``` npm i && npm start ``` tanto desde el lado del cliente como del servdior para poder ejecutar el proyecto localmente.
