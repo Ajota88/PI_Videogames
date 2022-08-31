@@ -14,9 +14,9 @@ La idea general es crear una aplicación en la cual se puedan ver los distintos 
 - Filtrarlos / Ordenarlos
 - Agregar nuevos videojuegos
 
-<p align="center">
-  <img height="200" src="https://ibb.co/2kHhkZ5" />
-</p>
+
+  ![HenryLogo]("https://ibb.co/2kHhkZ5")
+
 
 ## Objetivos del Proyecto
 
